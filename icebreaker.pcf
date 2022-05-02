@@ -1,0 +1,15 @@
+# 12 MHz clock
+set_io -nowarn CLK 35
+
+# LEDs and Button
+set_io -nowarn LED 2
+
+# RGB LED Driver
+
+# SPI Flash
+
+# PMOD 1A
+
+# PMOD 1B
+
+# LEDs and Buttons (PMOD 2)
