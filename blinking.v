@@ -9,7 +9,7 @@ module blinking (
 );
 
     /* reg */
-    reg [31:0] counter = 21'b0;
+    reg [31:0] counter = 31'b0;
     reg state;
     
     initial state = 1'b0;
@@ -20,7 +20,7 @@ module blinking (
     /* always */
     always @ (posedge CLOCK) begin
         counter <= counter + 1;
-        state <= counter[23]; // <------ data to change
+        state <= counter[5]; // <------ data to change
     end
 
 endmodule

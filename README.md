@@ -1,5 +1,26 @@
 # Smart Sensors Project Group 4
 
+## How to execute/simulate testbench
+
+(Warning: for testing purposes I changed the led-state to the 5th-bit of the counter (because simulation is slow))
+
+Compile verilog file
+```
+iverilog blinking_tb.v -o blinking_tb
+```
+
+Execute simulation
+```
+vvp blinking_tb
+```
+
+View generated vcd in gtkwave
+```
+gtkwave blinking_tb.vcd
+```
+(dont forget to import the signals in gtkwave on the left (right click on module -> recurse import -> replace))
+
+
 ## Installation GNU/Linux using apt (complicated lol)
 
 ```
