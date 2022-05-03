@@ -18,7 +18,7 @@ module blinking (
     /* always */
     always @ (posedge CLOCK) begin
         counter <= counter + 1;
-        state <= counter[26]; // <------ data to change
+        state <= counter[23]; // <------ data to change
     end
 
 endmodule
