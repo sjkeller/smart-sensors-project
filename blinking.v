@@ -9,9 +9,11 @@ module blinking (
 );
 
     /* reg */
-    reg [31:0] counter;
+    reg [31:0] counter = 21'b0;
     reg state;
     
+    initial state = 1'b0;
+
     /* assign */
     assign LED = state;
     
