@@ -1,8 +1,14 @@
 # 12 MHz clock
-set_io -nowarn CLOCK 35
+# set_io -nowarn CLOCK 35
 
 # LEDs and Button
-set_io -nowarn LED 26
+
+
+set_io -nowarn switch4 43
+set_io -nowarn switch2 25
+set_io -nowarn led_blue 3
+set_io -nowarn switch1 23
+set_io -nowarn led_green 4
 
 # RGB LED Driver
 
