@@ -1,9 +1,10 @@
-PROJ = blinking
+PROJ = task4
+PATH = PBL2
 
 all: $(PROJ).rpt $(PROJ).bin
 
-$(PROJ).json: $(PROJ).v
-	yosys -ql $(PROJ).yslog -p 'synth_ice40 -top blinking -json $@' $<
+$(PROJ).json: $(PATH)/$(PROJ).v
+	yosys -ql $(PROJ).yslog -p 'synth_ice40 -top $(PROJ) -json $@' $<
 
 $(PROJ).asc: $(PROJ).json icebreaker.pcf
 	nextpnr-ice40 -ql $(PROJ).nplog --up5k --package sg48 --freq 12 --asc $@ --pcf-allow-unconstrained --pcf icebreaker.pcf --json $<

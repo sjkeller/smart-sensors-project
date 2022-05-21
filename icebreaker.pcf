@@ -1,5 +1,5 @@
 # 12 MHz clock
-# set_io -nowarn CLOCK 35
+set_io -nowarn CLOCK 35
 
 # LEDs and Button
 

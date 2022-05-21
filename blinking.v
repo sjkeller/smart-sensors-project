@@ -4,24 +4,27 @@
 // Remember: switches are active low (pressed = 0, released = 1) -> inverted with "!"
 
 /* module */
-module blinking (
+`include "Blink.v"
 
+module blinking (
+	
+	input CLOCK,
     input switch1,
     input switch2,
     input switch4,
-    output led_green,
-    output led_blue
+    output wire led_green,
+    output wire led_blue
 );
 
-    /* reg */
-    reg led_green;
-    reg led_blue;
+
+    
+    top led_1 (CLOCK, !switch1, led_green);
+    top led_2 (CLOCK, !switch2, led_blue);
     
     
-    always @ (switch1, switch2, switch4) begin
+    /*always @ (switch1, switch2, switch4) begin
         led_green <= !switch1 || !switch4;
         led_blue <= switch2;
-    end
-
+    end*/
 
 endmodule
