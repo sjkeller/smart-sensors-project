@@ -1,5 +1,5 @@
-//`include "uart.v"
-//`include "baud_clk_generator.v"
+`include "uart.v"
+`include "baud_clk_generator.v"
 
 module top (
     input wire clk,
@@ -12,6 +12,8 @@ module top (
     reg [7:0] send_data = 0;
     
     wire uart_busy;
+    
+    wire baud_clk;
 
     reg[12:0] wait_cnt = 0;
     

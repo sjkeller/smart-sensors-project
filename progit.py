@@ -9,7 +9,7 @@ try:
 		cont = f.readlines()
 	
 	cont[0] = "PROJ = " + proj_name + "\n"
-	cont[1] = "PATH = " + proj_path + "\n"
+	cont[1] = "PROJPATH = " + proj_path + "\n"
 
 	with open("Makefile", "w") as f:
 		f.writelines(cont)

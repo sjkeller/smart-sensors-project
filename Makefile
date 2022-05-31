@@ -1,9 +1,9 @@
-PROJ = task4
-PATH = PBL2
+PROJ = top
+PROJPATH = PBL3
 
 all: $(PROJ).rpt $(PROJ).bin
 
-$(PROJ).json: $(PATH)/$(PROJ).v
+$(PROJ).json: $(PROJPATH)/$(PROJ).v
 	yosys -ql $(PROJ).yslog -p 'synth_ice40 -top $(PROJ) -json $@' $<
 
 $(PROJ).asc: $(PROJ).json icebreaker.pcf
