@@ -1,9 +1,7 @@
 # 12 MHz clock
-set_io -nowarn CLOCK 35
+set_io -nowarn clk 35
 
 # LEDs and Button
-
-
 
 set_io -nowarn led_blue 3
 set_io -nowarn led_green 4
@@ -27,4 +25,4 @@ set_io -nowarn switch1 23
 
 # UART
 
-set_io -nowarn uart_tx
+set_io -nowarn uart_tx 48
