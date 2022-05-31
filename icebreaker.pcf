@@ -6,9 +6,12 @@ set_io -nowarn CLOCK 35
 
 set_io -nowarn switch4 43
 set_io -nowarn switch2 25
+set_io -nowarn switch3 34
 set_io -nowarn led_blue 3
 set_io -nowarn switch1 23
 set_io -nowarn led_green 4
+
+
 
 # RGB LED Driver
 
@@ -19,3 +22,6 @@ set_io -nowarn led_green 4
 # PMOD 1B
 
 # LEDs and Buttons (PMOD 2)
+
+# UART
+
