@@ -1,5 +1,5 @@
 module baud_clk_generator
-	#(parameter CLK_PER_BIT=1250) (
+	#(parameter CLK_PER_BIT=625) ( //1250 => 4800 baud; 625 => 9600 baud
 	    input wire clk,
 	    input wire enable,
 	    output reg baud_clk);

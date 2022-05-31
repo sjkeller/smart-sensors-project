@@ -11,12 +11,13 @@ module top1_tb ();
     // instanciate design under test
     top dut(
         clk,
-        switch1,
+        /*switch1,
         switch2,
         switch3,
         switch4,
         out1,
         out2,
+        */
         tx
 
     );
