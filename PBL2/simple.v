@@ -1,3 +1,6 @@
+// Task 1 and 2
+
+
 // SW 1 or SW 4 -> Green LED
 // SW 2 -> Blue LED inverted
 
