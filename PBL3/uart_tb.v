@@ -1,4 +1,4 @@
-`include "uart.v"
+`include "uart_tx_8n1.v"
 
 
 `timescale 1ns / 1ps

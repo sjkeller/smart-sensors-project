@@ -1,4 +1,4 @@
-`include "top.v"
+`include "task2a_extra_count.v"
 
 
 `timescale 1ns / 1ps
@@ -6,7 +6,7 @@
 
 
 
-module top1_tb ();
+module task2a_extra_count_tb ();
 
     // instanciate design under test
     top dut(
@@ -34,8 +34,8 @@ module top1_tb ();
     // generate the clock
     initial begin
 
-    $dumpfile("test_top1_tb.vcd");
-        $dumpvars(0, top1_tb);
+    $dumpfile("task2a_extra_count_tb.vcd");
+        $dumpvars(0, task2a_extra_count_tb);
         clk = 1'b0;
         forever #1 clk = ~clk;
     end
