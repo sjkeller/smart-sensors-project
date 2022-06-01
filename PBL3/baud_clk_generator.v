@@ -20,9 +20,9 @@ module baud_clk_generator
 		begin
 			cnt = 0;
 			baud_clk = ~baud_clk;
-		end	
-    end
-    
+		end
+
+    end    
 
 endmodule
 

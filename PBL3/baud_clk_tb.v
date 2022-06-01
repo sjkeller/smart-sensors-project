@@ -1,9 +1,6 @@
 `include "baud_clk_generator.v"
 
-
 `timescale 1ns / 1ps
-
-
 
 
 module baud_clk_tb ();
