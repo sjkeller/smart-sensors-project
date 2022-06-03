@@ -13,8 +13,7 @@ module task2b_onlywhenchanged (
     input wire switch1,
     input wire switch2,
     input wire switch3,
-    input wire switch4,
-
+    input wire switch4
 );
     
     reg bclk_en = 1;
@@ -41,7 +40,6 @@ module task2b_onlywhenchanged (
 		    uart_tx       );
 
     
-    // count
     always @(posedge clk)
     begin
 

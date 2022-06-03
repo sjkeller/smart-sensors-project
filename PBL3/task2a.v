@@ -25,10 +25,6 @@ module task2a (
 		    send_data,
 		    uart_busy,
 		    uart_tx       );
-
-    end
-
-
     
 
 endmodule

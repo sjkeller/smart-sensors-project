@@ -13,7 +13,7 @@ module task2b_continuous (
     input wire switch1,
     input wire switch2,
     input wire switch3,
-    input wire switch4,
+    input wire switch4
     );
     
     reg bclk_en = 1;
