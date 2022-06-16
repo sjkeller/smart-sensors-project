@@ -1,5 +1,5 @@
-PROJ = top
-PROJPATH = PBL3
+PROJ = SPI
+PROJPATH = PBL4
 
 all: $(PROJ).rpt $(PROJ).bin
 

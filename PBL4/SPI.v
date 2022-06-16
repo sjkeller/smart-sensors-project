@@ -9,12 +9,15 @@ module SPI (
     output reg SPI_CLK,
     output reg SPI_CS,
     output reg SPI_MOSI,
-    input wire SPI_MISO
+    input wire SPI_MISO,
+    //parameter CPOL
+    
 );
 
 
     parameter SPI_HIGH = 1'b1;
     parameter SPI_LOW = 1'b0;
+    parameter CPOL = 0;
 
     initial busy = 0; // is currently sending data
     
