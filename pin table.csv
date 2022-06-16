@@ -1,0 +1,13 @@
+Board,FPGA,(Use),Connected
+8A,4,led_green,
+9B,3,led_blue,
+4A,48,uart_tx,uart_rx
+,35,clk,
+37A,23,switch1,
+36B,34,switch2,
+44B,25,switch3,
+49A,43,switch4,
+37A,23,SPI_CS,SENS_CS
+36B,25,SPI_MISO,SENS_SDO
+39A,26,SPI_MOSI,SENS_SDA
+38B,27,SPI_CLK,SENS_SCL
