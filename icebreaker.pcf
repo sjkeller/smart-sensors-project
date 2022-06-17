@@ -9,17 +9,17 @@ set_io -nowarn led_green 4
 # switches
 
 set_io -nowarn switch4 43
-#set_io -nowarn switch2 25
-set_io -nowarn switch3 34
+#set_io -nowarn switch3 25
+set_io -nowarn switch2 34
 #set_io -nowarn switch1 23
 
 # RGB LED Driver
 
 # SPI
-
-set_io -nowarn SPI_MOSI 25
-set_io -nowarn SPI_CS 23
-set_io -nowarn SPI_CLK 27
+set_io -nowarn spi_miso 25
+set_io -nowarn spi_mosi 26
+set_io -nowarn spi_cs 23
+set_io -nowarn spi_clk 27
 
 # PMOD 1A
 
