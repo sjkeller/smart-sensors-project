@@ -3,7 +3,8 @@
 
 /* module */
 module SPI (
-    input wire clk,
+    input wire clk,    
+    input wire spi_miso,
     input wire en,
     input wire rw,
     inout [7:0] data,
@@ -11,8 +12,7 @@ module SPI (
     output reg busy,
     output wire spi_clk,
     output reg spi_cs,
-    output reg spi_mosi,
-    input wire spi_miso
+    output reg spi_mosi
 );
 
     clk_generator spi_clk_generator(
@@ -39,6 +39,7 @@ module SPI (
 
     initial spi_cs = 1; //chip not selected = 1
 
+
     reg spi_clk_enable = 1;
     
     wire [0:7] send_address = {rw, SPI_LOW, address};
@@ -50,6 +51,8 @@ module SPI (
     reg [4:0] counter = 0;
 
     reg [2:0] state = 0;
+
+
         
     always @ (posedge spi_clk_gen) begin
         if (busy==1) begin           
@@ -60,25 +63,26 @@ module SPI (
 
                 case (state)
                     STATE_SENDADDRESS : begin                        
-                        state = (rw==0)? STATE_SENDDATA : STATE_READDATA;
+                        state <= (rw==0)? STATE_SENDDATA : STATE_READDATA;
                     end
                     default : begin
-                        state = STATE_IDLE;
+                        state <= STATE_IDLE;
                         busy <= 0;
-                        spi_cs = 1;
+                        spi_cs <= 1;
                     end
                 endcase
 
-            end else begin
-                if(state == STATE_READDATA) 
-                        read_data[counter] <= spi_miso;
-                else
-                    counter <= counter + 1;
             end
+            if(state == STATE_READDATA) begin
+                    read_data[counter] <= spi_miso;
+            end
+            
+            counter <= counter + 1;
+            
         end else begin
             counter <= 0;
             busy <= en;
-            spi_cs = ~en;
+            spi_cs <= ~en;
             state <= STATE_SENDADDRESS;
         end
     end
@@ -91,9 +95,6 @@ module SPI (
                 end
                 STATE_SENDDATA : begin
                     spi_mosi <= data[counter];
-                end
-                STATE_READDATA : begin
-                    counter <= counter + 1;
                 end
             endcase
         end
