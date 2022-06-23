@@ -44,7 +44,7 @@ module SPI (
     
     wire [0:7] send_address = {rw, SPI_LOW, address};
 
-    reg [7:0] read_data = 0;
+    reg [0:7] read_data = 0;
 
     assign data = (rw) ? read_data: 8'bzzzzzzzz;
     
