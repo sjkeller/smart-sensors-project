@@ -40,18 +40,16 @@ module top_read_id (
 
     
     parameter SENSOR_ADDRESS_ID = 6'h00; // Expected Id = 11100101
-    parameter SENSOR_ADDRESS_DATAX0 = 6'h32; // X-axis data 0
-    parameter SENSOR_ADDRESS_DATAX1 = 6'h33; // X-axis data 1
 
-    reg [7:0] set_spi_data = 8'b00000000;
-    wire [7:0] spi_data = (spi_rw) ? 8'bzzzzzzzz : set_spi_data;
+    reg [0:7] set_spi_data = 8'b00000000;
+    wire [0:7] spi_data = (spi_rw) ? 8'bzzzzzzzz : set_spi_data;
     reg spi_enable = 0;
     reg spi_rw = 1; // 1 = read
     wire spi_busy;
     wire spi_clk;
     wire spi_cs;
     wire spi_mosi;
-    reg [5:0] spi_address = SENSOR_ADDRESS_ID;
+    reg [0:5] spi_address = 0;
 
     // instanciate SPI acc sensor
     SPI spi_sensor(
@@ -70,9 +68,8 @@ module top_read_id (
 
     // LOGIC -----------------------------------------------------------
 
-    reg[20:0] wait_cnt = 0; //wait short time between sending to uart
+    reg[20:0] wait_cnt = 0; //wait short time
     
-    reg [2:0] state = 0;
 
     parameter STATE_IDLE = 0;
     parameter STATE_START_READ_SPI = 1;
@@ -81,9 +78,13 @@ module top_read_id (
     parameter STATE_WAIT_SEND_UART = 4;
 
 
+    
+    reg [7:0] state = STATE_IDLE;
+
+
     always @(posedge clk)
     begin
-        case (state)
+        case(state)
             STATE_IDLE : begin                        
                 wait_cnt <= wait_cnt + 1;
                 if(wait_cnt == 0) begin
@@ -94,6 +95,9 @@ module top_read_id (
             STATE_START_READ_SPI : begin                        
                 if(spi_busy == 0 && spi_enable == 0)
                 begin
+                    spi_rw <= 1;
+                    set_spi_data <= 0;
+                    spi_address <= SENSOR_ADDRESS_ID;
                     spi_enable <= 1;
                 end
                 else if(spi_busy == 1 && spi_enable == 1)

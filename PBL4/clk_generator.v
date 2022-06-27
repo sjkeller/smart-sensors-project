@@ -1,5 +1,5 @@
 module clk_generator
-	#(parameter CLK_PER_BIT=7) ( 
+	#(parameter CLK_PER_BIT=200) ( 
 	    input wire clk,
 	    input wire enable,
 	    output reg out_clk);
