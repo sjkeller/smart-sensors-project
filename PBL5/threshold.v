@@ -5,12 +5,7 @@ module threshold
     output is_over_threshold
 );
 
-reg is_over_threshold = 0;
+wire is_over_threshold = (data_x > THRESHOLD) | (data_x < -THRESHOLD);
 
-
-always @(posedge update_clk)
-begin
-    is_over_threshold <= (data_x > THRESHOLD) | (data_x < -THRESHOLD);          
-end
 
 endmodule

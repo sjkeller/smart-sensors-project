@@ -18,7 +18,7 @@ module top(
     wire spi_miso;
 
     wire led_green;
-    wire led_blue = ~update_data_clk;
+    wire led_blue = data_x[15];
 
 
     // PBL5 module ----------------------------------------------------------
