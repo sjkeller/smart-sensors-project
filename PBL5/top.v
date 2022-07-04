@@ -1,7 +1,7 @@
 `include "uart_tx_8n1.v"
 //`include "clk_generator.v"
 `include "SPI.v"
-`include "worker.v"
+`include "processing.v"
 
 module top(
     input clk,
@@ -18,12 +18,12 @@ module top(
     wire spi_miso;
 
     wire led_green;
-    wire led_blue = update_data_clk;
+    wire led_blue = ~update_data_clk;
 
 
     // PBL5 module ----------------------------------------------------------
     reg update_data_clk;
-    worker wrk(update_data_clk, data_x, led_green);
+    processing proc(update_data_clk, data_x, led_green);
 
 
     // UART Section ---------------------------------------------------
@@ -91,7 +91,7 @@ module top(
 
     // LOGIC -----------------------------------------------------------
 
-    reg[20:0] wait_cnt = 0; //wait short time
+    reg[18:0] wait_cnt = 0; //wait short time
     
 
     parameter STATE_IDLE = 0;
@@ -109,12 +109,15 @@ module top(
     parameter STATE_START_READ_SPI_2 = 8;
     parameter STATE_WAIT_READ_SPI_2 = 9;
     parameter STATE_UPDATE_DATA = 10;
-
-    parameter STATE_START_SEND_UART = 11;
-    parameter STATE_WAIT_SEND_UART = 12;
     
-    parameter STATE_START_SEND_UART_2 = 13;
-    parameter STATE_WAIT_SEND_UART_2 = 14;
+    parameter STATE_START_SEND_UART_SEP = 11;
+    parameter STATE_WAIT_SEND_UART_SEP = 12;
+
+    parameter STATE_START_SEND_UART = 13;
+    parameter STATE_WAIT_SEND_UART = 14;
+    
+    parameter STATE_START_SEND_UART_2 = 15;
+    parameter STATE_WAIT_SEND_UART_2 = 16;
 
     
     reg [7:0] data_x0 = 0;
@@ -124,6 +127,8 @@ module top(
 
     
     reg [7:0] state = STATE_START_WAIT;
+
+    parameter UART_SEP = 10;
 
 
     always @(posedge clk)
@@ -248,7 +253,27 @@ module top(
 
             STATE_UPDATE_DATA : begin
                 update_data_clk <= 1;
-                state <= STATE_START_SEND_UART;
+                state <= STATE_START_SEND_UART_SEP;
+            end
+
+            STATE_START_SEND_UART_SEP : begin                        
+                if(uart_busy == 0 && uart_send_enable == 0)
+                begin
+                    uart_send_data <= UART_SEP;
+                    uart_send_enable <= 1;
+                end
+                else if(uart_busy == 1 && uart_send_enable == 1)
+                begin
+                    uart_send_enable <= 0;
+                    state <= STATE_WAIT_SEND_UART_SEP;
+                end
+            end
+
+            STATE_WAIT_SEND_UART_SEP : begin                        
+                if(uart_busy == 0)
+                begin
+                    state <= STATE_START_SEND_UART;
+                end
             end
 
             STATE_START_SEND_UART : begin                        

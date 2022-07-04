@@ -1,10 +1,10 @@
 `include "threshold.v"
 
-module worker (
+module processing (
     input update_clk,
     input [15:0] data_x,
 
-    output threshold
+    output thres_val
 );
 
     wire update_clk;
@@ -12,7 +12,7 @@ module worker (
 
     //Modules
 
-    threshold thres(update_clk, data_x, thres);
+    threshold thres(update_clk, data_x, thres_val);
 
 
 
