@@ -1,6 +1,5 @@
 module threshold
 	#(parameter THRESHOLD=35) (
-    input update_clk,
     input signed [15:0] data_x,
     output is_over_threshold
 );

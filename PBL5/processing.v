@@ -1,9 +1,10 @@
 `include "threshold.v"
+`include "mavg.v"
 
 module processing (
     input update_clk,
     input [15:0] data_x,
-
+    output signed [15:0] data_mavg_out, // data from moving average filter
     output thres_val
 );
 
@@ -12,18 +13,8 @@ module processing (
 
     //Modules
 
-    threshold thres(update_clk, data_x, thres_val);
+    threshold thres(data_mavg_out, thres_val);
 
-
-
-    // if positive edge of update_clk take new value of data_x and calculate the new values
-    always @(posedge update_clk)
-    begin
-      
-           
-    end
-
-
-    
+    mavg movavg(update_clk, data_x, data_mavg_out);
 
 endmodule

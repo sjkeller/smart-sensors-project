@@ -20,10 +20,12 @@ module top(
     wire led_green;
     wire led_blue = data_x[15];
 
+    wire signed [15:0] data_mavg;
+
 
     // PBL5 module ----------------------------------------------------------
     reg update_data_clk;
-    processing proc(update_data_clk, data_x, led_green);
+    processing proc(update_data_clk, data_x, data_mavg, led_green);
 
 
     // UART Section ---------------------------------------------------
@@ -279,7 +281,7 @@ module top(
             STATE_START_SEND_UART : begin                        
                 if(uart_busy == 0 && uart_send_enable == 0)
                 begin
-                    uart_send_data <= data_x1;
+                    uart_send_data <= data_mavg[15:8];
                     uart_send_enable <= 1;
                 end
                 else if(uart_busy == 1 && uart_send_enable == 1)
@@ -299,7 +301,7 @@ module top(
             STATE_START_SEND_UART_2 : begin                        
                 if(uart_busy == 0 && uart_send_enable == 0)
                 begin
-                    uart_send_data <= data_x0;
+                    uart_send_data <= data_mavg[7:0];
                     uart_send_enable <= 1;
                 end
                 else if(uart_busy == 1 && uart_send_enable == 1)
