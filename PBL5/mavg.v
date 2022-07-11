@@ -7,7 +7,7 @@ module mavg
 
 reg data_out;
 
-reg[31:0] mem[0:N-1]; //N Locations
+reg[15:0] mem[0:N-1]; //N Locations
 
 integer i;
 
@@ -21,7 +21,6 @@ always @(posedge update_clk) begin //Clked process assignmnets use non-blocking(
 
 end
 
-integer j;
 
 always @* begin
 
