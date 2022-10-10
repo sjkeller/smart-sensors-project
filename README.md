@@ -7,7 +7,8 @@ sudo apt install build-essential clang bison flex gperf libfl2 \
     libfl-dev libreadline-dev gawk tcl-dev libffi-dev \
     graphviz xdot pkg-config python python3 libftdi-dev \
     qt5-default python3-dev libboost-all-dev cmake libeigen3-dev
-    
+```
+```
 sudo apt install fpga-icestorm yosys
 ```
 
